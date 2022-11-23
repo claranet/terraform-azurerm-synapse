@@ -128,7 +128,7 @@ module "synapse" {
 | Name | Version |
 |------|---------|
 | azurecaf | ~> 1.2, >= 1.2.22 |
-| azurerm | ~> 3.0 |
+| azurerm | ~> 3.22 |
 
 ## Modules
 
