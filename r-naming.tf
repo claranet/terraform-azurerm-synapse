@@ -1,4 +1,4 @@
-resource "azurecaf_name" "synapse" {
+data "azurecaf_name" "synapse" {
   name          = var.stack
   resource_type = "azurerm_synapse_workspace"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
@@ -8,7 +8,7 @@ resource "azurecaf_name" "synapse" {
   separator     = "-"
 }
 
-resource "azurecaf_name" "rg" {
+data "azurecaf_name" "rg" {
   name          = var.stack
   resource_type = "azurerm_resource_group"
   prefixes      = compact(["syws", var.name_prefix == "" ? null : local.name_prefix])
