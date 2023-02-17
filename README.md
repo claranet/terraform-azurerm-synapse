@@ -2,9 +2,9 @@
 
 [![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-orange.svg)](LICENSE) [![TF Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/claranet/synapse/azurerm/)
 
-This terraform module creates an [Azure Synapse](https://docs.microsoft.com/en-us/azure/synapse-analytics/overview-what-is) with 
-a [Synapse security alert policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_workspace_security_alert_policy), 
-a [SQL vulnerability assessment](https://docs.microsoft.com/en-us/azure/azure-sql/database/sql-vulnerability-assessment?tabs=azure-powershell), 
+This terraform module creates an [Azure Synapse](https://docs.microsoft.com/en-us/azure/synapse-analytics/overview-what-is) with
+a [Synapse security alert policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_workspace_security_alert_policy),
+a [SQL vulnerability assessment](https://docs.microsoft.com/en-us/azure/azure-sql/database/sql-vulnerability-assessment?tabs=azure-powershell),
 a [Synapse extended auditing policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_workspace_extended_auditing_policy)
 and activated [Diagnostics Logs](https://docs.microsoft.com/en-us/azure/synapse-analytics/monitoring/how-to-monitor-using-azure-monitor).
 
@@ -20,6 +20,13 @@ and activated [Diagnostics Logs](https://docs.microsoft.com/en-us/azure/synapse-
 | >= 3.x.x       | 0.12.x            | >= 2.0          |
 | >= 2.x.x       | 0.12.x            | < 2.0           |
 | <  2.x.x       | 0.11.x            | < 2.0           |
+
+## Contributing
+
+If you want to contribute to this repository, feel free to use our [pre-commit](https://pre-commit.com/) git hook configuration
+which will help you automatically update and format some files for you by enforcing our Terraform code module best-practices.
+
+More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-request-process) file.
 
 ## Usage
 
