@@ -53,7 +53,7 @@ module "rg" {
 }
 
 module "logs" {
-  source  = "claranet/run-common/azurerm//modules/logs"
+  source  = "claranet/run/azurerm//modules/logs"
   version = "x.x.x"
 
   resource_group_name = module.rg.resource_group_name
@@ -64,20 +64,21 @@ module "logs" {
   location_short      = module.region.location_short
 }
 
-resource "azurecaf_name" "adls" {
+data "azurecaf_name" "adls" {
   name          = var.stack
   resource_type = "azurerm_storage_account"
   clean_input   = true
 }
 
 resource "azurerm_storage_account" "adls" {
-  name = azurecaf_name.adls.result
+  name = data.azurecaf_name.adls.result
 
   resource_group_name      = module.rg.resource_group_name
   location                 = module.region.location
   is_hns_enabled           = true
   account_replication_type = "LRS"
   account_tier             = "Standard"
+  min_tls_version          = "TLS1_2"
 }
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "adls_container" {
