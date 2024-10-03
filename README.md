@@ -162,14 +162,14 @@ module "synapse" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| aad\_admin | Credentials of the Azure AD Administrator of this Synapse Workspace. | <pre>object({<br>    login     = string<br>    tenant_id = string<br>    object_id = string<br>  })</pre> | <pre>{<br>  "login": "",<br>  "object_id": "",<br>  "tenant_id": ""<br>}</pre> | no |
+| aad\_admin | Credentials of the Azure AD Administrator of this Synapse Workspace. | <pre>object({<br/>    login     = string<br/>    tenant_id = string<br/>    object_id = string<br/>  })</pre> | <pre>{<br/>  "login": "",<br/>  "object_id": "",<br/>  "tenant_id": ""<br/>}</pre> | no |
 | auditing\_policy\_storage\_account | ID of SQL audit policy storage account | `string` | n/a | yes |
-| azure\_devops\_configuration | Azure Devops repo Configuration | <pre>object({<br>    account_name    = string<br>    branch_name     = string<br>    last_commit_id  = optional(string)<br>    project_name    = string<br>    repository_name = string<br>    root_folder     = string<br>    tenant_id       = string<br>  })</pre> | `null` | no |
+| azure\_devops\_configuration | Azure Devops repo Configuration | <pre>object({<br/>    account_name    = string<br/>    branch_name     = string<br/>    last_commit_id  = optional(string)<br/>    project_name    = string<br/>    repository_name = string<br/>    root_folder     = string<br/>    tenant_id       = string<br/>  })</pre> | `null` | no |
 | client\_name | Client name/account used in naming | `string` | n/a | yes |
 | compute\_subnet\_id | Subnet ID used for computes in workspace | `string` | `null` | no |
 | custom\_diagnostic\_settings\_name | Custom name of the diagnostics settings, name will be 'default' if not set. | `string` | `"default"` | no |
 | custom\_name | Custom Azure Synapse name, generated if not set | `string` | `""` | no |
-| customer\_managed\_key | A customer\_managed\_key block supports the following: key\_versionless\_id - (Required) The Azure Key Vault Key Versionless ID to be used as the Customer Managed Key (CMK) for double encryption. key\_name - (Optional) An identifier for the key. Name needs to match the name of the key used with the azurerm\_synapse\_workspace\_key resource. Defaults to "cmk" if not specified. | <pre>object({<br>    key_versionless_id = string<br>    key_name           = optional(string)<br>  })</pre> | `null` | no |
+| customer\_managed\_key | A customer\_managed\_key block supports the following: key\_versionless\_id - (Required) The Azure Key Vault Key Versionless ID to be used as the Customer Managed Key (CMK) for double encryption. key\_name - (Optional) An identifier for the key. Name needs to match the name of the key used with the azurerm\_synapse\_workspace\_key resource. Defaults to "cmk" if not specified. | <pre>object({<br/>    key_versionless_id = string<br/>    key_name           = optional(string)<br/>  })</pre> | `null` | no |
 | data\_exfiltration\_protection\_enabled | Is data exfiltration protection enabled in this workspace ? | `bool` | `false` | no |
 | default\_tags\_enabled | Option to enable or disable default tags. | `bool` | `true` | no |
 | environment | Project environment | `string` | n/a | yes |
@@ -178,7 +178,7 @@ module "synapse" {
 | location | Azure location. | `string` | n/a | yes |
 | location\_short | Short string for Azure location. | `string` | n/a | yes |
 | logs\_categories | Log categories to send to destinations. | `list(string)` | `null` | no |
-| logs\_destinations\_ids | List of destination resources IDs for logs diagnostic destination.<br>Can be `Storage Account`, `Log Analytics Workspace` and `Event Hub`. No more than one of each can be set.<br>If you want to specify an Azure EventHub to send logs and metrics to, you need to provide a formated string with both the EventHub Namespace authorization send ID and the EventHub name (name of the queue to use in the Namespace) separated by the `|` character. | `list(string)` | n/a | yes |
+| logs\_destinations\_ids | List of destination resources IDs for logs diagnostic destination.<br/>Can be `Storage Account`, `Log Analytics Workspace` and `Event Hub`. No more than one of each can be set.<br/>If you want to specify an Azure EventHub to send logs and metrics to, you need to provide a formated string with both the EventHub Namespace authorization send ID and the EventHub name (name of the queue to use in the Namespace) separated by the `|` character. | `list(string)` | n/a | yes |
 | logs\_metrics\_categories | Metrics categories to send to destinations. | `list(string)` | `null` | no |
 | managed\_resource\_group\_name | Workspace managed resource group name | `string` | `null` | no |
 | name\_prefix | Optional prefix for the generated name | `string` | `""` | no |
@@ -189,8 +189,8 @@ module "synapse" {
 | saas\_connection | Used to configure Public Network Access | `bool` | `false` | no |
 | sql\_administrator\_login | Administrator login of synapse sql database | `string` | n/a | yes |
 | sql\_administrator\_password | Administrator password of synapse sql database | `string` | n/a | yes |
-| sql\_defender\_container | A blob storage container path to hold the scan results and all Threat Detection audit logs. | <pre>object({<br>    name                 = string<br>    storage_account_name = string<br>    resource_group_name  = string<br>  })</pre> | n/a | yes |
-| sql\_defender\_recurring\_scans | SQL defender scan configuration | <pre>object({<br>    enabled                           = bool<br>    email_subscription_admins_enabled = bool<br>    emails                            = list(string)<br>  })</pre> | `null` | no |
+| sql\_defender\_container | A blob storage container path to hold the scan results and all Threat Detection audit logs. | <pre>object({<br/>    name                 = string<br/>    storage_account_name = string<br/>    resource_group_name  = string<br/>  })</pre> | n/a | yes |
+| sql\_defender\_recurring\_scans | SQL defender scan configuration | <pre>object({<br/>    enabled                           = bool<br/>    email_subscription_admins_enabled = bool<br/>    emails                            = list(string)<br/>  })</pre> | `null` | no |
 | sql\_identity\_control\_enabled | Are pipelines (running as workspace's system assigned identity) allowed to access SQL pools? | `bool` | `false` | no |
 | stack | Project stack name | `string` | n/a | yes |
 | storage\_data\_lake\_gen2\_filesystem\_id | Azure Data Lake Gen 2 resource id | `string` | n/a | yes |
