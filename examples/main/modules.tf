@@ -1,32 +1,3 @@
-module "region" {
-  source  = "claranet/regions/azurerm"
-  version = "x.x.x"
-
-  azure_region = var.azure_region
-}
-
-module "rg" {
-  source  = "claranet/rg/azurerm"
-  version = "x.x.x"
-
-  location    = module.region.location
-  client_name = var.client_name
-  environment = var.environment
-  stack       = var.stack
-}
-
-module "logs" {
-  source  = "claranet/run/azurerm//modules/logs"
-  version = "x.x.x"
-
-  resource_group_name = module.rg.resource_group_name
-  stack               = var.stack
-  environment         = var.environment
-  client_name         = var.client_name
-  location            = module.region.location
-  location_short      = module.region.location_short
-}
-
 data "azurecaf_name" "adls" {
   name          = var.stack
   resource_type = "azurerm_storage_account"
@@ -36,8 +7,8 @@ data "azurecaf_name" "adls" {
 resource "azurerm_storage_account" "adls" {
   name = data.azurecaf_name.adls.result
 
-  resource_group_name      = module.rg.resource_group_name
-  location                 = module.region.location
+  resource_group_name      = module.rg.name
+  location                 = module.azure_region.location
   is_hns_enabled           = true
   account_replication_type = "LRS"
   account_tier             = "Standard"
@@ -51,7 +22,7 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "adls_container" {
 
 resource "azurerm_storage_container" "sql_defender" {
   name                  = "synapse-sql-defender"
-  storage_account_name  = module.logs.logs_storage_account_name
+  storage_account_name  = module.logs.storage_account_name
   container_access_type = "private"
 }
 
@@ -59,9 +30,9 @@ module "synapse" {
   source  = "claranet/synapse/azurerm"
   version = "x.x.x"
 
-  resource_group_name = module.rg.resource_group_name
-  location            = module.region.location
-  location_short      = module.region.location_short
+  resource_group_name = module.rg.name
+  location            = module.azure_region.location
+  location_short      = module.azure_region.location_short
   stack               = var.stack
   environment         = var.environment
   client_name         = var.client_name
@@ -71,23 +42,25 @@ module "synapse" {
   sql_administrator_login    = "Example"
   sql_administrator_password = var.sql_administrator_password
 
+  aad_admin = var.aad_admin
+
   saas_connection = false
 
-  logs_destinations_ids              = [module.logs.log_analytics_workspace_id]
+  logs_destinations_ids              = [module.logs.id]
   linking_allowed_for_aad_tenant_ids = []
 
   sql_defender_container = {
     name                 = azurerm_storage_container.sql_defender.name
-    storage_account_name = module.logs.logs_storage_account_name
-    resource_group_name  = module.rg.resource_group_name
+    storage_account_name = module.logs.storage_account_name
+    resource_group_name  = module.rg.name
   }
 
-  auditing_policy_storage_account = module.logs.logs_storage_account_id
+  auditing_policy_storage_account = module.logs.storage_account_id
 
   sql_defender_recurring_scans = {
     enabled                           = true
     email_subscription_admins_enabled = true
-    emails                            = ["example@fr.clara.net"]
+    emails                            = ["example@claranet.com"]
   }
 
   depends_on = [azurerm_storage_container.sql_defender]

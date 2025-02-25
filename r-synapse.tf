@@ -1,4 +1,4 @@
-resource "azurerm_synapse_workspace" "synapse" {
+resource "azurerm_synapse_workspace" "main" {
   name                                 = local.name
   resource_group_name                  = var.resource_group_name
   location                             = var.location
@@ -14,7 +14,6 @@ resource "azurerm_synapse_workspace" "synapse" {
   sql_identity_control_enabled         = var.sql_identity_control_enabled
   managed_resource_group_name          = local.managed_resource_group_name
 
-  aad_admin = [var.aad_admin]
   dynamic "azure_devops_repo" {
     for_each = toset(var.azure_devops_configuration == null ? [] : [var.azure_devops_configuration])
     content {
@@ -43,15 +42,32 @@ resource "azurerm_synapse_workspace" "synapse" {
   tags = merge(local.default_tags, var.extra_tags)
 }
 
-resource "azurerm_synapse_workspace_security_alert_policy" "synapse_workspace_security_alert_policy" {
-  synapse_workspace_id = azurerm_synapse_workspace.synapse.id
+moved {
+  from = azurerm_synapse_workspace.synapse
+  to   = azurerm_synapse_workspace.main
+}
+
+resource "azurerm_synapse_workspace_aad_admin" "main" {
+  synapse_workspace_id = azurerm_synapse_workspace.main.id
+  login                = var.aad_admin.login
+  object_id            = var.aad_admin.object_id
+  tenant_id            = var.aad_admin.tenant_id
+}
+
+resource "azurerm_synapse_workspace_security_alert_policy" "main" {
+  synapse_workspace_id = azurerm_synapse_workspace.main.id
   policy_state         = "Enabled"
   disabled_alerts      = []
   retention_days       = var.retention_days
 }
 
-resource "azurerm_synapse_workspace_vulnerability_assessment" "synapse_vulnerability_assessment" {
-  workspace_security_alert_policy_id = azurerm_synapse_workspace_security_alert_policy.synapse_workspace_security_alert_policy.id
+moved {
+  from = azurerm_synapse_workspace_security_alert_policy.synapse_workspace_security_alert_policy
+  to   = azurerm_synapse_workspace_security_alert_policy.main
+}
+
+resource "azurerm_synapse_workspace_vulnerability_assessment" "main" {
+  workspace_security_alert_policy_id = azurerm_synapse_workspace_security_alert_policy.main.id
   storage_container_path = format("%s%s/",
     data.azurerm_storage_account.audit_logs.primary_blob_endpoint,
     data.azurerm_storage_container.vulnerability_assessment.name
@@ -67,9 +83,19 @@ resource "azurerm_synapse_workspace_vulnerability_assessment" "synapse_vulnerabi
   }
 }
 
-resource "azurerm_synapse_workspace_extended_auditing_policy" "synapse_auditing_policy" {
-  synapse_workspace_id                    = azurerm_synapse_workspace.synapse.id
+moved {
+  from = azurerm_synapse_workspace_vulnerability_assessment.synapse_vulnerability_assessment
+  to   = azurerm_synapse_workspace_vulnerability_assessment.main
+}
+
+resource "azurerm_synapse_workspace_extended_auditing_policy" "main" {
+  synapse_workspace_id                    = azurerm_synapse_workspace.main.id
   storage_endpoint                        = data.azurerm_storage_account.auditing_policy.primary_blob_endpoint
   storage_account_access_key_is_secondary = false
   retention_in_days                       = var.retention_days
+}
+
+moved {
+  from = azurerm_synapse_workspace_extended_auditing_policy.synapse_auditing_policy
+  to   = azurerm_synapse_workspace_extended_auditing_policy.main
 }
