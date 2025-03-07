@@ -1,3 +1,47 @@
+## 8.0.0 (2025-03-07)
+
+### ⚠ BREAKING CHANGES
+
+* **AZ-1088:** AzureRM Provider v4+ and OpenTofu 1.8+
+
+### Features
+
+* **AZ-1088:** module v8 structure and updates 57eb6fb
+
+### Miscellaneous Chores
+
+* **deps:** update dependency claranet/diagnostic-settings/azurerm to v7 bba47a0
+* **deps:** update dependency opentofu to v1.8.3 09aa761
+* **deps:** update dependency opentofu to v1.8.4 9bb9260
+* **deps:** update dependency opentofu to v1.8.6 b0b181a
+* **deps:** update dependency opentofu to v1.8.8 83bf0da
+* **deps:** update dependency opentofu to v1.9.0 8bdadab
+* **deps:** update dependency pre-commit to v4 244c81d
+* **deps:** update dependency pre-commit to v4.0.1 b8f8c11
+* **deps:** update dependency pre-commit to v4.1.0 455d213
+* **deps:** update dependency tflint to v0.54.0 9fe247c
+* **deps:** update dependency tflint to v0.55.0 3d626c9
+* **deps:** update dependency tflint to v0.55.1 16d0b56
+* **deps:** update dependency trivy to v0.56.1 1622239
+* **deps:** update dependency trivy to v0.56.2 aec5501
+* **deps:** update dependency trivy to v0.57.1 02e1923
+* **deps:** update dependency trivy to v0.58.1 ad4de78
+* **deps:** update dependency trivy to v0.58.2 32e7bb7
+* **deps:** update dependency trivy to v0.59.0 0a40943
+* **deps:** update dependency trivy to v0.59.1 0d71b74
+* **deps:** update dependency trivy to v0.60.0 34e42eb
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.19.0 9d7adaa
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.20.0 b2e3161
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.21.0 07653f2
+* **deps:** update pre-commit hook pre-commit/pre-commit-hooks to v5 a7124da
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.1.0 49a7f52
+* **deps:** update tools a0d4a8e
+* **deps:** update tools b20a55a
+* prepare for new examples structure 4ce3c41
+* update examples structure 2d701f8
+* update Github templates 0f6cc96
+* update tflint config for v0.55.0 6a904c5
+
 ## 7.2.0 (2024-10-03)
 
 ### Features
