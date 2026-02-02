@@ -1,3 +1,31 @@
+## 8.0.2 (2026-02-02)
+
+### Documentation
+
+* 📚️ update example 1b70479
+
+### Miscellaneous Chores
+
+* **deps:** update dependency opentofu to v1.10.7 beec607
+* **deps:** update dependency opentofu to v1.11.1 b6a2767
+* **deps:** update dependency opentofu to v1.11.2 3e1aa39
+* **deps:** update dependency opentofu to v1.11.3 2e23201
+* **deps:** update dependency opentofu to v1.11.4 64d5bbf
+* **deps:** update dependency pre-commit to v4.4.0 bda5e37
+* **deps:** update dependency pre-commit to v4.5.0 e3b0b54
+* **deps:** update dependency pre-commit to v4.5.1 82e1e2e
+* **deps:** update dependency terraform-docs to v0.21.0 79ad4ad
+* **deps:** update dependency tflint to v0.60.0 ba540a5
+* **deps:** update dependency trivy to v0.67.1 e9463b2
+* **deps:** update dependency trivy to v0.67.2 f1b5b43
+* **deps:** update dependency trivy to v0.68.1 270406e
+* **deps:** update dependency trivy to v0.68.2 5c61e27
+* **deps:** update dependency trivy to v0.69.0 d651e12
+* **deps:** update pre-commit hook crate-ci/committed to v1.1.10 c8ad4f4
+* **deps:** update pre-commit hook crate-ci/committed to v1.1.8 21ebcd6
+* **deps:** update pre-commit hook crate-ci/committed to v1.1.9 cb7631a
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.2.2 f5baabe
+
 ## 8.0.1 (2025-10-01)
 
 ### Code Refactoring
