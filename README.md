@@ -54,6 +54,13 @@ resource "azurerm_storage_account" "adls" {
   account_replication_type = "LRS"
   account_tier             = "Standard"
   min_tls_version          = "TLS1_2"
+
+  network_rules {
+    default_action             = "Deny"
+    bypass                     = ["AzureServices"]
+    ip_rules                   = []
+    virtual_network_subnet_ids = []
+  }
 }
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "adls_container" {
@@ -63,7 +70,7 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "adls_container" {
 
 resource "azurerm_storage_container" "sql_defender" {
   name                  = "synapse-sql-defender"
-  storage_account_name  = module.logs.storage_account_name
+  storage_account_id    = module.logs.storage_account_id
   container_access_type = "private"
 }
 
