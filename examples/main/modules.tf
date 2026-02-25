@@ -20,17 +20,29 @@ resource "azurerm_storage_account" "adls" {
     ip_rules                   = []
     virtual_network_subnet_ids = []
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "adls_container" {
   name               = "container"
   storage_account_id = azurerm_storage_account.adls.id
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "azurerm_storage_container" "sql_defender" {
   name                  = "synapse-sql-defender"
   storage_account_id    = module.logs.storage_account_id
   container_access_type = "private"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 module "synapse" {
