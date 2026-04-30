@@ -130,20 +130,20 @@ module "synapse" {
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | azurecaf | >= 1.2.28 |
 | azurerm | ~> 4.31 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | diagnostics | claranet/diagnostic-settings/azurerm | ~> 8.2.0 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azurerm_synapse_workspace.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_workspace) | resource |
 | [azurerm_synapse_workspace_aad_admin.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_workspace_aad_admin) | resource |
 | [azurerm_synapse_workspace_extended_auditing_policy.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_workspace_extended_auditing_policy) | resource |
@@ -158,7 +158,7 @@ module "synapse" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | aad\_admin | Credentials of the Azure AD Administrator of this Synapse Workspace. | <pre>object({<br/>    login     = string<br/>    tenant_id = string<br/>    object_id = string<br/>  })</pre> | <pre>{<br/>  "login": "",<br/>  "object_id": "",<br/>  "tenant_id": ""<br/>}</pre> | no |
 | auditing\_policy\_storage\_account | ID of SQL audit policy storage account. | `string` | n/a | yes |
 | azure\_devops\_configuration | Azure Devops repo configuration. | <pre>object({<br/>    account_name    = string<br/>    branch_name     = string<br/>    last_commit_id  = optional(string)<br/>    project_name    = string<br/>    repository_name = string<br/>    root_folder     = string<br/>    tenant_id       = string<br/>  })</pre> | `null` | no |
@@ -195,7 +195,7 @@ module "synapse" {
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | auditing\_policy | Extended Auditing Policy for this Synapse Workspace. |
 | connectivity\_endpoints | A list of connectivity endpoints for this Synapse Workspace. |
 | environment | Application environment. |
