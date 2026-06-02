@@ -1,6 +1,7 @@
 output "resource" {
   description = "Synaps Workspace resource object."
   value       = azurerm_synapse_workspace.main
+  sensitive   = true
 }
 
 output "id" {
@@ -21,16 +22,19 @@ output "connectivity_endpoints" {
 output "security_alert_policy" {
   description = "Security Alert Policy for this Synapse Workspace."
   value       = azurerm_synapse_workspace_security_alert_policy.main
+  sensitive   = true
 }
 
 output "vulnerability_assessment" {
   description = "Vulnerability Assessment for this Synapse Workspace."
   value       = azurerm_synapse_workspace_vulnerability_assessment.main
+  sensitive   = true
 }
 
 output "auditing_policy" {
   description = "Extended Auditing Policy for this Synapse Workspace."
   value       = azurerm_synapse_workspace_extended_auditing_policy.main
+  sensitive   = true
 }
 
 output "resource_group_name" {
