@@ -4,8 +4,8 @@ data "azurerm_storage_account" "audit_logs" {
 }
 
 data "azurerm_storage_container" "vulnerability_assessment" {
-  name                 = var.sql_defender_container.name
-  storage_account_name = var.sql_defender_container.storage_account_name
+  name               = var.sql_defender_container.name
+  storage_account_id = data.azurerm_storage_account.audit_logs.id
 }
 
 data "azurerm_storage_account" "auditing_policy" {
